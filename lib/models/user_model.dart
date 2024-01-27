@@ -2,6 +2,7 @@ class UserModel {
   String email = "";
   String imageUrl = "";
   String username = "";
+  String userType = "";
 
   UserModel();
 
@@ -9,6 +10,7 @@ class UserModel {
     email = json['email'] ?? "";
     imageUrl = json['image_url'] ?? "";
     username = json['username'] ?? "";
+    userType = json['userType'] ?? "";
   }
 
   Map<String, dynamic> toJson() {
@@ -16,6 +18,7 @@ class UserModel {
     data['email'] = email;
     data['image_url'] = imageUrl;
     data['username'] = username;
+    data['userType'] = userType;
     return data;
   }
 }

@@ -32,12 +32,12 @@ class _AuthenticatedUsersListState extends State<AuthenticatedUsersList> {
         String email = doc['email'];
         String username = doc['username'];
         String imageUrl = doc['image_url'];
-        String specialization = doc['specialization'];
+        String userType = doc['userType'];
         users.add({
           'email': email,
           'username': username,
           'image_url': imageUrl,
-          'specialization': specialization,
+          'userType': userType,
         });
       }
     });
@@ -63,7 +63,14 @@ class _AuthenticatedUsersListState extends State<AuthenticatedUsersList> {
             backgroundImage:
             NetworkImage(_authenticatedUsers[index]['image_url']!),
           ),
-          title: Text(_authenticatedUsers[index]['username']!),
+          title: Row(
+            children: [
+              Text(_authenticatedUsers[index]['username']!),
+              SizedBox(width: 5),
+              if(_authenticatedUsers[index]['userType'] == 'Mentor')
+              Icon(Icons.verified, color: Colors.blue, size: 20),
+            ],
+          ),
           subtitle: Text(_authenticatedUsers[index]['email']!),
           trailing: IconButton(
             icon: const Icon(Icons.chat_outlined),
@@ -85,21 +92,21 @@ class _AuthenticatedUsersListState extends State<AuthenticatedUsersList> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(person['username']),
+          title: Row(
+            children: [
+              Text(person['username']),
+              SizedBox(width: 5),
+              if(person['userType'] == 'Mentor')
+              Icon(Icons.verified, color: Colors.blue, size: 20),
+            ],
+          ),
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(person['email']),
               const SizedBox(height: 10),
-              Text('Area of interest: ${person['specialization']}'),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  // Handle send request button click
-                },
-                child: const Text("Send Request"),
-              ),
+              Text('${person['userType']}', ),
               const SizedBox(height: 10),
               const Row(
                 children: [
@@ -108,6 +115,13 @@ class _AuthenticatedUsersListState extends State<AuthenticatedUsersList> {
                   Text(
                       "No. of Followers: 0"), // Placeholder for followers count
                 ],
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () {
+                  // Handle send request button click
+                },
+                child: const Text("Send Request"),
               ),
             ],
           ),

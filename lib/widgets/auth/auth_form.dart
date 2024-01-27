@@ -15,7 +15,7 @@ class AuthForm extends StatefulWidget {
       String password,
       XFile? image,
       bool isLogin,
-      String specialization,
+      String userType,
       BuildContext ctx,
       ) submitFn;
 
@@ -31,7 +31,7 @@ class _AuthFormState extends State<AuthForm> {
   var _userPassword = '';
   XFile? _userImageFile;
   var _isLogin = true;
-  var _userSpecialization = '';
+  var _userType = '';
 
   void _pickedImage(XFile? image) {
     _userImageFile = image;
@@ -57,7 +57,7 @@ class _AuthFormState extends State<AuthForm> {
         _userPassword.trim(),
         _userImageFile,
         _isLogin,
-        _userSpecialization.trim(),
+        _userType.trim(),
         context,
       );
     }
@@ -123,16 +123,16 @@ class _AuthFormState extends State<AuthForm> {
                       }),
                   if (!_isLogin)
                     TextFormField(
-                        key: ValueKey('specialization'),
+                        key: ValueKey('userType'),
                         validator: (value) {
-                          if (value!.isEmpty || value.length < 4)
-                            return 'Please enter atleast 4 characters.';
+                          if (value != 'Mentor' && value != 'Student')
+                            return 'Choose either Mentor or Student';
                           return null;
                         },
                         decoration:
-                        InputDecoration(labelText: 'Area of interest'),
+                        InputDecoration(labelText: 'Mentor or Student'),
                         onSaved: (value) {
-                          _userSpecialization = value!;
+                          _userType = value!;
                         }),
                   SizedBox(height: 12),
                   if (widget.isLoading) CircularProgressIndicator(),
