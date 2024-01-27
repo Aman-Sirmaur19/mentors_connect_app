@@ -1,3 +1,4 @@
+import 'package:chat_app/models/authenticated_users_list.dart';
 import 'package:chat_app/models/user_model.dart';
 import 'package:chat_app/screens/chat_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,6 +15,7 @@ class MentorsScreen extends StatefulWidget {
 class _MentorsScreenState extends State<MentorsScreen> {
   bool isLoading = false;
   UserModel mainUser = UserModel();
+
   @override
   void initState() {
     getUserName();
@@ -123,7 +125,7 @@ class _MentorsScreenState extends State<MentorsScreen> {
               children: [
                 _buildSearchBar(context),
                 Expanded(
-                  child: _buildPersonList(),
+                  child: AuthenticatedUsersList(),
                 ),
               ],
             ),
@@ -145,132 +147,5 @@ class _MentorsScreenState extends State<MentorsScreen> {
         ),
       ),
     );
-  }
-
-  Widget _buildPersonList() {
-    // Dummy data for 10 persons
-    List<Map<String, String>> persons = [
-      {
-        "name": "John Doe",
-        "email": "john@example.com",
-        "image": "assets/john.jpg"
-      },
-      {
-        "name": "Jane Smith",
-        "email": "jane@example.com",
-        "image": "assets/jane.jpg"
-      },
-      {
-        "name": "Bob Johnson",
-        "email": "bob@example.com",
-        "image": "assets/bob.jpg"
-      },
-      {
-        "name": "Alice Brown",
-        "email": "alice@example.com",
-        "image": "assets/alice.jpg"
-      },
-      {
-        "name": "David Wilson",
-        "email": "david@example.com",
-        "image": "assets/david.jpg"
-      },
-      {
-        "name": "Emma White",
-        "email": "emma@example.com",
-        "image": "assets/emma.jpg"
-      },
-      {
-        "name": "Michael Davis",
-        "email": "michael@example.com",
-        "image": "assets/michael.jpg"
-      },
-      {
-        "name": "Olivia Lee",
-        "email": "olivia@example.com",
-        "image": "assets/olivia.jpg"
-      },
-      {
-        "name": "Ryan Taylor",
-        "email": "ryan@example.com",
-        "image": "assets/ryan.jpg"
-      },
-      {
-        "name": "Sophia Miller",
-        "email": "sophia@example.com",
-        "image": "assets/sophia.jpg"
-      },
-    ];
-
-    return ListView.builder(
-      itemCount: persons.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          onTap: () {
-            _showPersonDetails(persons[index]);
-          },
-          leading: CircleAvatar(
-            backgroundImage: AssetImage(persons[index]["image"]!),
-          ),
-          title: Text(persons[index]["name"]!),
-          subtitle: Text(persons[index]["email"]!),
-          trailing: IconButton(
-            icon: const Icon(Icons.chat_bubble),
-            onPressed: () {
-              // Handle chat bot icon click
-              _startChatWithPerson(persons[index]);
-            },
-          ),
-        );
-      },
-    );
-  }
-
-  void _showPersonDetails(Map<String, String> person) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(person["name"]!),
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text("Email: ${person["email"]}"),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  // Handle send request button click
-                },
-                child: const Text("Send Request"),
-              ),
-              const SizedBox(height: 10),
-              const Row(
-                children: [
-                  Icon(Icons.people),
-                  SizedBox(width: 5),
-                  Text(
-                      "No. of Followers: 0"), // Placeholder for followers count
-                ],
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text("Close"),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void _startChatWithPerson(Map<String, String> person) {
-    // Handle starting a chat with the selected person
-    // This could navigate to a chat screen or open a chat interface
-    Navigator.of(context).pushNamed(ChatScreen.routeName);
   }
 }
