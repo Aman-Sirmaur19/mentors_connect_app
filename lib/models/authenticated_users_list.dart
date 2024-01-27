@@ -5,9 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../screens/chat_screen.dart';
 
 class AuthenticatedUsersList extends StatefulWidget {
-  // BuildContext context;
-  // AuthenticatedUsersList(this.context);
-
   @override
   _AuthenticatedUsersListState createState() => _AuthenticatedUsersListState();
 }
