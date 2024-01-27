@@ -51,33 +51,33 @@ class _AuthenticatedUsersListState extends State<AuthenticatedUsersList> {
   Widget build(BuildContext context) {
     return _authenticatedUsers.isNotEmpty
         ? ListView.separated(
-            padding: EdgeInsets.all(10),
-            separatorBuilder: (context, index) => Divider(color: Colors.grey),
-            itemCount: _authenticatedUsers.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                onTap: () {
-                  _showPersonDetails(_authenticatedUsers[index]);
-                },
-                leading: CircleAvatar(
-                  backgroundImage:
-                      NetworkImage(_authenticatedUsers[index]['image_url']!),
-                ),
-                title: Text(_authenticatedUsers[index]['username']!),
-                subtitle: Text(_authenticatedUsers[index]['email']!),
-                trailing: IconButton(
-                  icon: const Icon(Icons.chat_outlined),
-                  onPressed: () {
-                    // Handle chat bot icon click
-                    _startChatWithPerson(_authenticatedUsers[index]);
-                  },
-                ),
-              );
+      padding: EdgeInsets.all(10),
+      separatorBuilder: (context, index) => Divider(color: Colors.grey),
+      itemCount: _authenticatedUsers.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          onTap: () {
+            _showPersonDetails(_authenticatedUsers[index]);
+          },
+          leading: CircleAvatar(
+            backgroundImage:
+            NetworkImage(_authenticatedUsers[index]['image_url']!),
+          ),
+          title: Text(_authenticatedUsers[index]['username']!),
+          subtitle: Text(_authenticatedUsers[index]['email']!),
+          trailing: IconButton(
+            icon: const Icon(Icons.chat_outlined),
+            onPressed: () {
+              // Handle chat bot icon click
+              _startChatWithPerson(_authenticatedUsers[index]);
             },
-          )
+          ),
+        );
+      },
+    )
         : Center(
-            child: Text('No users!'),
-          );
+      child: Text('No users!'),
+    );
   }
 
   void _showPersonDetails(Map<String, dynamic> person) {

@@ -19,14 +19,14 @@ class _AuthScreenState extends State<AuthScreen> {
   var _isLoading = false;
 
   void _submitAuthForm(
-    String email,
-    String username,
-    String password,
-    XFile? image,
-    bool isLogin,
-    String specialization,
-    BuildContext ctx,
-  ) async {
+      String email,
+      String username,
+      String password,
+      XFile? image,
+      bool isLogin,
+      String specialization,
+      BuildContext ctx,
+      ) async {
     UserCredential authResult;
     try {
       setState(() {

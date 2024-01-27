@@ -34,11 +34,11 @@ class ChatUser extends Equatable {
       );
 
   Map<String, dynamic> toJson() => {
-        'username': displayName,
-        'image_url': photoUrl,
-        // FirestoreConstants.phoneNumber: phoneNumber,
-        // FirestoreConstants.aboutMe: aboutMe,
-      };
+    'username': displayName,
+    'image_url': photoUrl,
+    // FirestoreConstants.phoneNumber: phoneNumber,
+    // FirestoreConstants.aboutMe: aboutMe,
+  };
 
   factory ChatUser.fromDocument(DocumentSnapshot snapshot) {
     String image_url = "";
@@ -68,10 +68,10 @@ class ChatUser extends Equatable {
   @override
   // TODO: implement props
   List<Object?> get props => [
-        id,
-        photoUrl,
-        displayName,
-        // phoneNumber,
-        // aboutMe,
-      ];
+    id,
+    photoUrl,
+    displayName,
+    // phoneNumber,
+    // aboutMe,
+  ];
 }

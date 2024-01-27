@@ -19,32 +19,6 @@ class _ChatScreenState extends State<ChatScreen> {
         title: Text('FlutterChat'),
         foregroundColor: Theme.of(context).colorScheme.background,
         backgroundColor: Theme.of(context).colorScheme.primary,
-        // actions: [
-        //   DropdownButton(
-        //       icon: Icon(
-        //         Icons.more_vert,
-        //         color: Theme.of(context).primaryIconTheme.color,
-        //       ),
-        //       items: [
-        //         DropdownMenuItem(
-        //           value: 'logout',
-        //           child: Container(
-        //             child: Row(
-        //               children: [
-        //                 Icon(Icons.exit_to_app),
-        //                 SizedBox(width: 8),
-        //                 Text('Logout'),
-        //               ],
-        //             ),
-        //           ),
-        //         )
-        //       ],
-        //       onChanged: (itemIdentifier) {
-        //         if (itemIdentifier == 'logout') {
-        //           FirebaseAuth.instance.signOut();
-        //         }
-        //       })
-        // ],
       ),
       body: Container(
         child: Column(

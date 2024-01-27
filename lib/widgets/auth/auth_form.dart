@@ -4,20 +4,20 @@ import '../pickers/user_image_picker.dart';
 
 class AuthForm extends StatefulWidget {
   AuthForm(
-    this.submitFn,
-    this.isLoading,
-  );
+      this.submitFn,
+      this.isLoading,
+      );
 
   final bool isLoading;
   final void Function(
-    String email,
-    String username,
-    String password,
-    XFile? image,
-    bool isLogin,
-    String specialization,
-    BuildContext ctx,
-  ) submitFn;
+      String email,
+      String username,
+      String password,
+      XFile? image,
+      bool isLogin,
+      String specialization,
+      BuildContext ctx,
+      ) submitFn;
 
   @override
   _AuthFormState createState() => _AuthFormState();
@@ -130,7 +130,7 @@ class _AuthFormState extends State<AuthForm> {
                           return null;
                         },
                         decoration:
-                            InputDecoration(labelText: 'Area of interest'),
+                        InputDecoration(labelText: 'Area of interest'),
                         onSaved: (value) {
                           _userSpecialization = value!;
                         }),
