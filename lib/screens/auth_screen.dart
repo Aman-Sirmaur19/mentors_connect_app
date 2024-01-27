@@ -24,6 +24,7 @@ class _AuthScreenState extends State<AuthScreen> {
     String password,
     XFile? image,
     bool isLogin,
+    String specialization,
     BuildContext ctx,
   ) async {
     UserCredential authResult;
@@ -55,9 +56,10 @@ class _AuthScreenState extends State<AuthScreen> {
             .collection('users')
             .doc(authResult.user!.uid)
             .set({
-          'username': username,
           'email': email,
+          'username': username,
           'image_url': url,
+          'specialization': specialization,
         });
       }
     } on PlatformException catch (error) {

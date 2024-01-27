@@ -29,13 +29,15 @@ class _AuthenticatedUsersListState extends State<AuthenticatedUsersList> {
     querySnapshot.docs.forEach((doc) {
       // Exclude the current user from the list
       if (doc.id != _currentUser.uid) {
-        String username = doc['username'];
         String email = doc['email'];
+        String username = doc['username'];
         String imageUrl = doc['image_url'];
+        String specialization = doc['specialization'];
         users.add({
-          'username': username,
           'email': email,
+          'username': username,
           'image_url': imageUrl,
+          'specialization': specialization,
         });
       }
     });
@@ -89,6 +91,8 @@ class _AuthenticatedUsersListState extends State<AuthenticatedUsersList> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(person['email']),
+              const SizedBox(height: 10),
+              Text('Area of interest: ${person['specialization']}'),
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {

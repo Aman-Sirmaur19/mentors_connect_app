@@ -22,8 +22,8 @@ class ChatUser extends Equatable {
     String? id,
     String? photoUrl,
     String? nickname,
-    String? phoneNumber,
-    String? email,
+    // String? phoneNumber,
+    // String? email,
   }) =>
       ChatUser(
         id: id ?? this.id,
